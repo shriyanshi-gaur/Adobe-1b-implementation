@@ -1,0 +1,18 @@
+# This file contains the package requirements for the project.
+# You can install all dependencies by running: pip install -r requirements.txt
+
+# For PDF parsing
+PyMuPDF
+
+# For data manipulation, used in document processing
+pandas
+
+# For loading the pre-trained heading classifier model
+# scikit-learn includes joblib
+scikit-learn
+
+# The core library for deep learning models
+torch
+
+# For sentence embeddings and semantic similarity
+sentence-transformers
