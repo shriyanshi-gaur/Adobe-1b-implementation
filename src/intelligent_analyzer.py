@@ -14,7 +14,9 @@ class Analyzer:
         """
         Initializes the SentenceTransformer model, forcing it to use the CPU.
         """
-        self.model = SentenceTransformer(model_name, device='cpu')
+        model_path = os.path.join("models_1b", "multi-qa-MiniLM-L6-cos-v1")
+        self.model = SentenceTransformer(model_path, device='cpu')
+
 
     def rank_chunks_by_similarity(self, persona: str, jtbd: str, items_to_rank: list, batch_size: int = 16) -> (list, torch.Tensor):
         """

@@ -67,3 +67,46 @@ The specified `collection_path` directory must contain:
 
 1.  A `challenge1b_input.json` file with the `persona`, `job_to_be_done`, and `documents` keys.
 2.  A subdirectory named `PDFs` containing all the PDF files listed in the input JSON.
+
+
+## 🐳 Docker Setup
+
+This setup ensures a consistent, offline, and CPU-only environment for evaluation. It involves three main steps.
+
+-----
+
+### 🧱 Step 2: Build the Docker Image
+
+Next, navigate to the project's root directory (where the `Dockerfile` is located) in your terminal and run the build command. This packages all code, dependencies, and the downloaded model into a self-contained image.
+
+The `--platform linux/amd64` flag ensures the image is built for the target evaluation environment.
+
+```bash
+docker build --platform linux/amd64 -t adobe_1b_implementation .
+```
+
+-----
+
+### ▶️ Step 3: Run the Docker Container
+
+Finally, run the container using the appropriate command for your system. This command mounts your local `Collection_1` folder into the container for processing and ensures no internet access is used during execution via `--network none`.
+
+**For Windows (using PowerShell):**
+
+```powershell
+docker run --rm `
+  -v "${PWD}\Challenge_1b\Collection_1:/app/input" `
+  -v "${PWD}\Challenge_1b\Collection_1:/app/output" `
+  --network none `
+  adobe_1b_implementation
+```
+
+**For Mac/Linux (using Bash):**
+
+```bash
+docker run --rm \
+  -v "$(pwd)/Challenge_1b/Collection_1:/app/input" \
+  -v "$(pwd)/Challenge_1b/Collection_1:/app/output" \
+  --network none \
+  adobe_1b_implementation
+```
